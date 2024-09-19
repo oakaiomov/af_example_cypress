@@ -3,6 +3,7 @@
   "packageManager": "yarn@4.3.1",
   "devDependencies": {
     "@eslint/js": "^9.10.0",
+    "@faker-js/faker": "^9.0.1",
     "cypress": "^13.14.2",
     "eslint": "^9.10.0",
     "eslint-plugin-cypress": "^3.5.0",
