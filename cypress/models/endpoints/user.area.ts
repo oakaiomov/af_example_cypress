@@ -4,18 +4,18 @@ export default class EOM_User extends EOM_Base {
   register(body: User.Register.Payload) {
     return cy.request<User.Register.Response>({
       method: 'POST',
-      url: this.url('/register'),
+      url: this.sysUrl('/register'),
       body,
-      headers: this.headers()
+      headers: this.sysHeaders()
     })
   }
 
   delete(body: User.Delete.Payload) {
     return cy.request<User.Delete.Response>({
       method: 'POST',
-      url: this.url('/delete'),
+      url: this.sysUrl('/delete'),
       body,
-      headers: this.headers()
+      headers: this.sysHeaders()
     })
   }
 }
