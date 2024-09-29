@@ -117,6 +117,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@faker-js/faker@npm:9.0.1"
+  checksum: 10c0/ca800e49857e42b95ab5a94c64d13de17bb188d0c9b43243b7afec2eb11d47b76af2211ec371ff7a1dd1c855e12403d071569c3eb82d15e7b8f5124007826763
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/module-importer@npm:^1.0.1":
   version: 1.0.1
   resolution: "@humanwhocodes/module-importer@npm:1.0.1"
@@ -329,6 +336,7 @@ __metadata:
   resolution: "af_example_cypress@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.10.0"
+    "@faker-js/faker": "npm:^9.0.1"
     cypress: "npm:^13.14.2"
     eslint: "npm:^9.10.0"
     eslint-plugin-cypress: "npm:^3.5.0"
