@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function matchers(chai: Chai.ChaiStatic, utils: Chai.ChaiUtils) {
+export default function assertions(chai: Chai.ChaiStatic, utils: Chai.ChaiUtils) {
   chai.Assertion.addMethod('erroredResponse', function (message: string) {
     expect(this._obj.status).to.be.oneOf([400, 404])
 
