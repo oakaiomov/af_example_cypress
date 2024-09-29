@@ -9,4 +9,9 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   { plugins: { cypress: pluginCypress } },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'off'
+    }
+  }
 ]

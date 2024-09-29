@@ -13,6 +13,7 @@
     "typescript-eslint": "^8.6.0"
   },
   "scripts": {
-    "cypress": "npx cypress open"
+    "cypress": "npx cypress open",
+    "execute": "npx cypress run"
   }
 }

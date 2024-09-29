@@ -18,4 +18,29 @@ export default class EOM_User extends EOM_Base {
       headers: this.sysHeaders()
     })
   }
+
+  authSession() {
+    return cy.session(
+      globalThis.session.name,
+      () => {
+        const user = data('user').register(globalThis.session.email)
+        globalThis.session.password = user.password
+
+        return cy
+          .api('user')
+          .register(user)
+          .then($response => {
+            expect($response.body).to.have.property('email').that.eq(globalThis.session.email)
+            expect($response.body).to.have.property('token')
+
+            globalThis.session.token = $response.body.token
+          })
+      },
+      {
+        validate: () => {
+          cy.api('sync').sync()
+        }
+      }
+    )
+  }
 }

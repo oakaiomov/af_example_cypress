@@ -1,3 +1,4 @@
+import EOM_CRUD_Base from './_crud.base.area'
 import EOM_Comments from './comments.area'
 import EOM_Labels from './labels.area'
 import EOM_Projects from './projects.area'
@@ -26,6 +27,7 @@ export default function endpointsFactory() {
     }
   })
 
+  EOM_CRUD_Base.cypressify()
   EOM_Comments.cypressify()
   EOM_Labels.cypressify()
   EOM_Projects.cypressify()

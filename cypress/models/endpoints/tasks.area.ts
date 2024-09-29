@@ -1,50 +1,12 @@
-import EOM_Base from './_base.area'
+import EOM_CRUD_Base from './_crud.base.area'
 
-export default class EOM_Tasks extends EOM_Base {
+export default class EOM_Tasks extends EOM_CRUD_Base {
   listItems(qs?: Tasks.Payload.ListFilters, failOnStatusCode = true) {
     return cy.request<Array<Tasks.Item>>({
       method: 'GET',
       url: this.restUrl(),
       headers: this.restHeaders(),
       qs,
-      failOnStatusCode
-    })
-  }
-
-  createItem(body: Tasks.Payload.Create, failOnStatusCode = true) {
-    return cy.request<Tasks.Item>({
-      method: 'POST',
-      url: this.restUrl(),
-      headers: this.restHeaders(),
-      failOnStatusCode,
-      body
-    })
-  }
-
-  getItem(id: string, failOnStatusCode = true) {
-    return cy.request<Tasks.Item>({
-      method: 'GET',
-      url: this.restUrl(`/${id}`),
-      headers: this.restHeaders(),
-      failOnStatusCode
-    })
-  }
-
-  updateItem(id: string, body: Tasks.Payload.Update, failOnStatusCode = true) {
-    return cy.request<Tasks.Item>({
-      method: 'POST',
-      url: this.restUrl(`/${id}`),
-      headers: this.restHeaders(),
-      failOnStatusCode,
-      body
-    })
-  }
-
-  deleteItem(id: string, failOnStatusCode = true) {
-    return cy.request<Tasks.Item>({
-      method: 'DELETE',
-      url: this.restUrl(`/${id}`),
-      headers: this.restHeaders(),
       failOnStatusCode
     })
   }

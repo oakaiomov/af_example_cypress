@@ -1,4 +1,4 @@
-export default class ObjectModel {
+export default abstract class ObjectModel {
   static cypressify() {
     const command =
       $key =>

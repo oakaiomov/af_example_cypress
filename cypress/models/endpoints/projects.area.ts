@@ -1,48 +1,10 @@
-import EOM_Base from './_base.area'
+import EOM_CRUD_Base from './_crud.base.area'
 
-export default class EOM_Projects extends EOM_Base {
+export default class EOM_Projects extends EOM_CRUD_Base {
   listItems(failOnStatusCode = true) {
     return cy.request<Array<Projects.Item>>({
       method: 'GET',
       url: this.restUrl(),
-      headers: this.restHeaders(),
-      failOnStatusCode
-    })
-  }
-
-  createItem(body: Projects.Payload.Create, failOnStatusCode = true) {
-    return cy.request<Projects.Item>({
-      method: 'POST',
-      url: this.restUrl(),
-      headers: this.restHeaders(),
-      failOnStatusCode,
-      body
-    })
-  }
-
-  getItem(id: string, failOnStatusCode = true) {
-    return cy.request<Projects.Item>({
-      method: 'GET',
-      url: this.restUrl(`/${id}`),
-      headers: this.restHeaders(),
-      failOnStatusCode
-    })
-  }
-
-  updateItem(id: string, body: Projects.Payload.Update, failOnStatusCode = true) {
-    return cy.request<Projects.Item>({
-      method: 'POST',
-      url: this.restUrl(`/${id}`),
-      headers: this.restHeaders(),
-      failOnStatusCode,
-      body
-    })
-  }
-
-  deleteItem(id: string, failOnStatusCode = true) {
-    return cy.request<Projects.Item>({
-      method: 'DELETE',
-      url: this.restUrl(`/${id}`),
       headers: this.restHeaders(),
       failOnStatusCode
     })

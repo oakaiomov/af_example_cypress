@@ -2,6 +2,8 @@ export {}
 
 declare global {
   namespace Projects {
+    type ViewStyle = 'list' | 'board'
+
     type Item = {
       id: string
       name: string
@@ -13,7 +15,7 @@ declare global {
       is_favorite: boolean
       is_inbox_project: boolean
       is_team_inbox: boolean
-      view_style: 'list' | 'board'
+      view_style: ViewStyle
       url: string
     }
 
@@ -23,14 +25,14 @@ declare global {
         parent_id?: string
         color?: string
         is_favorite?: boolean
-        view_style?: 'list' | 'board'
+        view_style?: ViewStyle
       }
 
       type Update = {
         name?: string
         color?: string
         is_favorite?: boolean
-        view_style?: 'list' | 'board'
+        view_style?: ViewStyle
       }
     }
 
