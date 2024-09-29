@@ -53,17 +53,7 @@ describe('[API] Personal Labels', () => {
         return cy
           .api('labels')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-
-            expect($response.body).to.have.property('error').that.eq('Required argument is missing')
-            expect($response.body).to.have.property('error_code').that.eq(19)
-            expect($response.body).to.have.property('error_tag').that.eq('ARGUMENT_MISSING')
-            expect($response.body)
-              .to.have.property('error_extra')
-              .that.has.property('argument')
-              .that.eq('name')
-          })
+          .then($response => expect($response).to.be.missingArgumentResponse('name'))
       })
     }
   })

@@ -104,10 +104,9 @@ describe('[API] Comments', () => {
         return cy
           .api('comments')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Either task_id or project_id should be set')
-          })
+          .then($response =>
+            expect($response).to.be.erroredResponse('Either task_id or project_id should be set')
+          )
       })
 
       it('With both project_id and task_id', () => {
@@ -130,17 +129,7 @@ describe('[API] Comments', () => {
         return cy
           .api('comments')
           .createItem<Comments.Item, Comments.Payload.Create>(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-
-            expect($response.body).to.have.property('error').that.eq('Required argument is missing')
-            expect($response.body).to.have.property('error_code').that.eq(19)
-            expect($response.body).to.have.property('error_tag').that.eq('ARGUMENT_MISSING')
-            expect($response.body)
-              .to.have.property('error_extra')
-              .that.has.property('argument')
-              .that.eq('content')
-          })
+          .then($response => expect($response).to.be.missingArgumentResponse('content'))
       })
     }
   })

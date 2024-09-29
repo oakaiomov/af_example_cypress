@@ -222,17 +222,7 @@ describe('[API] Tasks', () => {
         return cy
           .api('tasks')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-
-            expect($response.body).to.have.property('error').that.eq('Required argument is missing')
-            expect($response.body).to.have.property('error_code').that.eq(19)
-            expect($response.body).to.have.property('error_tag').that.eq('ARGUMENT_MISSING')
-            expect($response.body)
-              .to.have.property('error_extra')
-              .that.has.property('argument')
-              .that.eq('content')
-          })
+          .then($response => expect($response).to.be.missingArgumentResponse('content'))
       })
 
       it('Without duration unit', () => {
@@ -242,10 +232,9 @@ describe('[API] Tasks', () => {
         return cy
           .api('tasks')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Item duration unit is missing')
-          })
+          .then($response =>
+            expect($response).to.be.erroredResponse('Item duration unit is missing')
+          )
       })
 
       // DEFECT: Task being attached to wrong project instead of error

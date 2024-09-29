@@ -28,8 +28,7 @@ declare global {
     }
   }
 
-  // eslint-disable-next-line no-var
-  var data: <FOM extends keyof Models.Data>(name: FOM) => Models.Data[FOM]
+  function data<FOM extends keyof Models.Data>(name: FOM): Models.Data[FOM]
 
   namespace Cypress {
     interface Chainable {

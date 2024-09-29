@@ -96,28 +96,23 @@ describe('[API] Projects', () => {
       it('Without required fields', () => {
         cy.api('projects')
           .createItem({}, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Name must be provided for the project creation')
-          })
+          .then($response =>
+            expect($response).to.be.erroredResponse(
+              'Name must be provided for the project creation'
+            )
+          )
       })
       it('As subproject for invalid project', () => {
         const payload = data('entity').project('invalid')
         cy.api('projects')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Invalid argument value')
-          })
+          .then($response => expect($response).to.be.erroredResponse('Invalid argument value'))
       })
       it('With invalid color', () => {
         const payload = data('entity').project(undefined, false, 'invalid')
         cy.api('projects')
           .createItem(payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Invalid argument value')
-          })
+          .then($response => expect($response).to.be.erroredResponse('Invalid argument value'))
       })
     },
 
@@ -128,10 +123,7 @@ describe('[API] Projects', () => {
 
         cy.api('projects')
           .updateItem(entityID, payload, false)
-          .then($response => {
-            expect($response.status).to.eq(400)
-            expect($response.body).to.eq('Invalid argument value')
-          })
+          .then($response => expect($response).to.be.erroredResponse('Invalid argument value'))
       })
     }
   })
@@ -165,10 +157,7 @@ describe('[API] Projects', () => {
     it('With invalid ID', () => {
       cy.api('projects')
         .getItem('invalid', false)
-        .then($response => {
-          expect($response.status).to.eq(400)
-          expect($response.body).to.eq('Invalid argument value')
-        })
+        .then($response => expect($response).to.be.erroredResponse('Invalid argument value'))
     })
   })
 })

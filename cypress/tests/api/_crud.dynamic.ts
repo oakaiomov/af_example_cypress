@@ -81,10 +81,7 @@ export default function API_CRUD_TESTS<
       return cy
         .api(pluralEntity)
         .getItem(`invalid`, false)
-        .then($response => {
-          expect($response.status).to.be.oneOf([400, 404])
-          expect($response.body).to.eq(config.messages.invalidID.get)
-        })
+        .then($response => expect($response).to.be.erroredResponse(config.messages.invalidID.get))
     })
 
     if (config.additionalGetTests) config.additionalGetTests(payload, entityID)
@@ -122,10 +119,9 @@ export default function API_CRUD_TESTS<
       return cy
         .api(pluralEntity)
         .updateItem<ITEM, UPDATE>(`invalid`, payload, false)
-        .then($response => {
-          expect($response.status).to.be.oneOf([400, 404])
-          expect($response.body).to.eq(config.messages.invalidID.update)
-        })
+        .then($response =>
+          expect($response).to.be.erroredResponse(config.messages.invalidID.update)
+        )
     })
 
     if (config.additionalUpdateTests) config.additionalUpdateTests(fromPayload, entityID)
@@ -162,10 +158,9 @@ export default function API_CRUD_TESTS<
       return cy
         .api(pluralEntity)
         .getItem(`invalid`, false)
-        .then($response => {
-          expect($response.status).to.be.oneOf([400, 404])
-          expect($response.body).to.eq(config.messages.invalidID.delete)
-        })
+        .then($response =>
+          expect($response).to.be.erroredResponse(config.messages.invalidID.delete)
+        )
     })
   })
 }
